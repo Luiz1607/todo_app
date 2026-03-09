@@ -1,0 +1,22 @@
+<h1>Entrar</h1>
+
+<%= form_with url: login_path do %>
+  <div>
+    <label>Email</label><br>
+    <input type="email" name="email">
+  </div>
+
+  <br>
+
+  <div>
+    <label>Senha</label><br>
+    <input type="password" name="password">
+  </div>
+
+  <br>
+
+  <button type="submit">Entrar</button>
+<% end %>
+
+<br>
+<%= link_to "Criar conta", sign_up_path %>

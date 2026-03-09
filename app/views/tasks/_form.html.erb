@@ -1,0 +1,44 @@
+<% if @task.errors.any? %>
+  <div>
+    <h3>Erros encontrados:</h3>
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @task do |f| %>
+  <div>
+    <%= f.label :title, "Título" %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.label :description, "Descrição" %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.label :due_date, "Prazo" %><br>
+    <%= f.date_field :due_date %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.label :done, "Concluída?" %>
+    <%= f.check_box :done %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

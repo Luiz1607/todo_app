@@ -1,0 +1,19 @@
+<h1><%= @task.title %></h1>
+
+<p>
+  <strong>Descrição:</strong><br>
+  <%= @task.description.presence || "Sem descrição" %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task.done ? "Concluída ✅" : "Pendente ⬜" %>
+</p>
+
+<p>
+  <strong>Prazo:</strong>
+  <%= @task.due_date || "Sem prazo" %>
+</p>
+
+<%= link_to "Editar", edit_task_path(@task) %> |
+<%= link_to "Voltar", tasks_path %>
