@@ -1,19 +1,23 @@
-<h1><%= @task.title %></h1>
+<article class="detail-card">
+  <h2><%= @task.title %></h2>
 
-<p>
-  <strong>Descrição:</strong><br>
-  <%= @task.description.presence || "Sem descrição" %>
-</p>
+  <p>
+    <strong>Descrição:</strong><br>
+    <%= @task.description.presence || "Sem descrição" %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.done ? "Concluída ✅" : "Pendente ⬜" %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @task.done ? "Concluída ✅" : "Pendente ⬜" %>
+  </p>
 
-<p>
-  <strong>Prazo:</strong>
-  <%= @task.due_date || "Sem prazo" %>
-</p>
+  <p>
+    <strong>Prazo:</strong>
+    <%= @task.due_date || "Sem prazo" %>
+  </p>
+</article>
 
-<%= link_to "Editar", edit_task_path(@task) %> |
-<%= link_to "Voltar", tasks_path %>
+<div class="detail-actions">
+  <%= link_to "Editar", edit_task_path(@task), class: "btn btn-secondary" %>
+  <%= link_to "Voltar", tasks_path, class: "btn btn-link" %>
+</div>

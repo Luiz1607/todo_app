@@ -1,5 +1,5 @@
 <% if @task.errors.any? %>
-  <div>
+  <div class="error-box">
     <h3>Erros encontrados:</h3>
     <ul>
       <% @task.errors.full_messages.each do |message| %>
@@ -9,36 +9,28 @@
   </div>
 <% end %>
 
-<%= form_with model: @task do |f| %>
-  <div>
-    <%= f.label :title, "Título" %><br>
+<%= form_with model: @task, class: "form-card" do |f| %>
+  <div class="field">
+    <%= f.label :title, "Título" %>
     <%= f.text_field :title %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.label :description, "Descrição" %><br>
+  <div class="field">
+    <%= f.label :description, "Descrição" %>
     <%= f.text_area :description %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.label :due_date, "Prazo" %><br>
+  <div class="field">
+    <%= f.label :due_date, "Prazo" %>
     <%= f.date_field :due_date %>
   </div>
 
-  <br>
-
-  <div>
+  <div class="field checkbox-field">
     <%= f.label :done, "Concluída?" %>
     <%= f.check_box :done %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.submit %>
+  <div class="field">
+    <%= f.submit "Salvar tarefa", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Todo App" %></title>
+    <title><%= content_for(:title) || "To-do List" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Todo App">
@@ -19,11 +19,35 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="app-shell">
+      <header class="topbar">
+        <h1 class="brand">
+          <%= link_to "To-do List", current_user ? tasks_path : login_path %>
+        </h1>
+
+        <nav class="topbar-actions">
+          <% if current_user %>
+            <span class="user-name"><%= current_user.name %></span>
+            <%= button_to "Sair", logout_path, method: :delete, class: "btn btn-secondary" %>
+          <% else %>
+            <%= link_to "Entrar", login_path, class: "btn btn-secondary" %>
+            <%= link_to "Criar conta", sign_up_path, class: "btn btn-primary" %>
+          <% end %>
+        </nav>
+      </header>
+
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>"><%= message %></div>
+      <% end %>
+
+      <main class="content">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

@@ -1,7 +1,7 @@
-<h1>Criar conta</h1>
+<h2>Criar conta</h2>
 
 <% if @user.errors.any? %>
-  <div>
+  <div class="error-box">
     <h3>Erros encontrados:</h3>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
@@ -11,39 +11,30 @@
   </div>
 <% end %>
 
-<%= form_with model: @user, url: sign_up_path do |f| %>
-  <div>
-    <%= f.label :name, "Nome" %><br>
+<%= form_with model: @user, url: sign_up_path, class: "form-card" do |f| %>
+  <div class="field">
+    <%= f.label :name, "Nome" %>
     <%= f.text_field :name %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.label :email, "Email" %><br>
+  <div class="field">
+    <%= f.label :email, "Email" %>
     <%= f.email_field :email %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.label :password, "Senha" %><br>
+  <div class="field">
+    <%= f.label :password, "Senha" %>
     <%= f.password_field :password %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.label :password_confirmation, "Confirmar senha" %><br>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmar senha" %>
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <br>
-
-  <div>
-    <%= f.submit "Criar conta" %>
+  <div class="field">
+    <%= f.submit "Criar conta", class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<br>
-<%= link_to "Já tem conta? Entrar", login_path %>
+<%= link_to "Já tem conta? Entrar", login_path, class: "btn btn-link" %>
