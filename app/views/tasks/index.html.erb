@@ -20,8 +20,18 @@
           <p class="task-description"><%= task.description %></p>
         <% end %>
 
-        <% if task.due_date.present? %>
-          <p class="task-meta">Prazo: <%= task.due_date %></p>
+        <% if task.due_date.present? && !task.done %>
+          <% days_left = (task.due_date - Date.current).to_i %>
+
+          <p class="task-meta">
+            <% if days_left > 0 %>
+              Prazo: <%= task.due_date %> • Faltam <%= pluralize(days_left, "dia", "dias") %>
+            <% elsif days_left == 0 %>
+              Prazo: <%= task.due_date %> • Vence hoje
+            <% else %>
+              Prazo: <%= task.due_date %> • Atrasada há <%= pluralize(days_left.abs, "dia", "dias") %>
+            <% end %>
+          </p>
         <% end %>
 
         <div class="task-actions">
